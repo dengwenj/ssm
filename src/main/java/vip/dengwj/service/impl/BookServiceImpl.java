@@ -13,6 +13,7 @@ public class BookServiceImpl implements BookService {
         bookDao.save();
     }
 
+    // spring 去调用的
     public void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
     }

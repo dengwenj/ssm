@@ -16,3 +16,18 @@
 * 使用 IOC 容器管理 bean（IOC）
 * 在 IOC 容器内将有依赖关系的 bean 进行关系绑定（DI）
 * 最终效果：使用对象时不仅可以直接从 IOC 容器中获取，并且获取到的 bean 已经绑定了所有的依赖关系
+
+### bean 基础配置
+* 功能：定义 Spring 核心容器管理的对象
+* 属性列表：
+* 1、id：bean 的 id，使用容器可以通过 id 值获取对应的 bean，在一个容器中 id 值唯一
+* 2、class：bean 的类型，即配置的 bean 的全路径类名
+* <bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />
+
+### bean 别名配置
+* name 属性：定义 bean 的别名，可定义多个，使用逗号 分号 空格分隔均可
+* <bean id="bookService" name="bookService2 bookService3" class="vip.dengwj.service.impl.BookServiceImpl" />
+
+### bean 作用范围配置
+* scope 属性：定义 bean 的作用范围，singleton 单列，prototype 非单列
+* <bean id="bookService" name="bookService2 bookService3" class="vip.dengwj.service.impl.BookServiceImpl" scope="prototype" />
