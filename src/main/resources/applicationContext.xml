@@ -7,7 +7,12 @@
 <!--    bean 标签表示配置 bean-->
 <!--    id属性表示给 bean 起名字-->
 <!--    class 属性表示给 bean 定义类型-->
-    <bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />
+    <bean id="bookService" class="vip.dengwj.service.impl.BookServiceImpl">
+<!--        property 标签表示配置当前 bean 的属性-->
+<!--        name 属性表示配置哪一个具体的属性-->
+<!--        ref 属性表示参照哪一个 bean-->
+        <property name="bookDao" ref="bookDao" />
+    </bean>
 
-    <bean id="bookService" class="vip.dengwj.service.impl.BookServiceImpl" />
+    <bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />
 </beans>
