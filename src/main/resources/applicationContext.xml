@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    配置 bean-->
+<!--    bean 标签表示配置 bean-->
+<!--    id属性表示给 bean 起名字-->
+<!--    class 属性表示给 bean 定义类型-->
+    <bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />
+
+    <bean id="bookService" class="vip.dengwj.service.impl.BookServiceImpl" />
+</beans>

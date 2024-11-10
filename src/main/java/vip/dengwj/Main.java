@@ -1,7 +1,11 @@
 package vip.dengwj;
 
+import vip.dengwj.service.BookService;
+import vip.dengwj.service.impl.BookServiceImpl;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        BookService bookService = new BookServiceImpl();
+        bookService.save();
     }
 }
