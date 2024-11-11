@@ -44,7 +44,7 @@
 * 3、实例工厂的方式：
 * (<bean id="bookDaoFactory" class="vip.dengwj.factory.InBookDaoFactory" />
   <bean id="bookDao2" factory-bean="bookDaoFactory" factory-method="getBookDao" />)
-* 4、FactoryBean 接口的方式
+* 4、FactoryBean 接口的方式(实用)
 ```java
 public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
     @Override
@@ -58,3 +58,25 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
     }
 }
 ```
+
+### bean 生命周期
+* 生命周期：从创建到消亡的完整过程
+* bean 生命周期：bean从创建到销毁的整个过程
+* bean 生命周期控制：在 bean 创建后到销毁前做一些事情
+
+### 执行顺序
+* 初始化容器：
+* 1、创建对象（内存分配）
+* 2、执行构造方法
+* 3、执行属性注入（set属性）
+* 4、执行 bean 初始化方法
+* 使用 bean：
+* 1、执行业务操作
+* 关闭/销毁容器
+* 1、执行 bean 销毁方法
+
+### bean 销毁时机
+* 容器关闭前触发 bean 的销毁
+* 关闭容器方式：
+* 手工关闭容器：close 操作
+* 注册关闭钩子，在虚拟机退出前先关闭容器再退出虚拟机：registerShutdownHook()
