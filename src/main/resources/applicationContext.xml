@@ -30,4 +30,28 @@
 <!--    bean 的生命周期-->
     <bean id="lifeCycleBookDao" class="vip.bean_lifecycle.dao.impl.BookDaoImpl" init-method="init" destroy-method="destroy" />
     <bean id="lifeCycleBookService" class="vip.bean_lifecycle.service.impl.BookServiceImpl" />
+
+<!--    依赖注入 setter 注入-->
+<!--    <bean id="userDao" class="vip.di.dao.impl.UserDaoImpl">-->
+<!--        <property name="name" value="朴睦" />-->
+<!--        <property name="age" value="24" />-->
+<!--    </bean>-->
+
+<!--    <bean id="userService" class="vip.di.service.impl.UserServiceImpl">-->
+<!--        <property name="userDao" ref="userDao" />-->
+<!--    </bean>-->
+
+<!--    构造器注入-->
+    <bean id="userDao" class="vip.di.dao.impl.UserDaoImpl">
+<!--        这个 name 是参数名，要对应-->
+<!--        <constructor-arg name="name" value="李雷" />-->
+<!--        <constructor-arg name="age" value="20" />-->
+<!--        位置的方式-->
+        <constructor-arg index="0" value="李雷" />
+        <constructor-arg index="1" value="20" />
+<!--        type 的方式-->
+    </bean>
+    <bean id="userService" class="vip.di.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao" />
+    </bean>
 </beans>

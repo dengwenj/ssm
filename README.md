@@ -80,3 +80,31 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
 * 关闭容器方式：
 * 手工关闭容器：close 操作
 * 注册关闭钩子，在虚拟机退出前先关闭容器再退出虚拟机：registerShutdownHook()
+
+### 依赖注入方式
+* 向一个类中传递数据的方式有几种?
+* 1、普通方法（set 方法）
+* 2、构造方法
+* setter 注入：简单类型、引用类型
+* 构造器注入：简单类型、引用类型
+
+### setter 注入
+* 配置中使用 property 标签 ref 属性注入引用类型对象
+* 配置中使用 property 标签 value 属性注入简单类型数据
+
+### 构造器注入
+```xml
+<!--    构造器注入-->
+<bean id="userDao" class="vip.di.dao.impl.UserDaoImpl">
+  <!--        这个 name 是参数名，要对应-->
+  <!--        <constructor-arg name="name" value="李雷" />-->
+  <!--        <constructor-arg name="age" value="20" />-->
+  <!--        位置的方式-->
+  <constructor-arg index="0" value="李雷" />
+  <constructor-arg index="1" value="20" />
+  <!--        type 的方式-->
+</bean>
+<bean id="userService" class="vip.di.service.impl.UserServiceImpl">
+<constructor-arg name="userDao" ref="userDao" />
+</bean>
+```
