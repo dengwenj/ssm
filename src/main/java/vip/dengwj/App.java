@@ -2,6 +2,7 @@ package vip.dengwj;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import vip.dengwj.dao.BookDao;
 import vip.dengwj.service.BookService;
 
 public class App {
@@ -18,5 +19,17 @@ public class App {
         bookService.save();
         bookService2.save();
         bookService3.save();
+
+        System.out.println("-------------------");
+        BookDao bookDao1 = (BookDao) context.getBean("bookDao1");
+        bookDao1.save();
+
+        System.out.println("-------------------");
+        BookDao bookDao2 = (BookDao) context.getBean("bookDao2");
+        bookDao2.save();
+
+        System.out.println("-------------------");
+        BookDao bookDao3 = (BookDao) context.getBean("bookDao3");
+        bookDao3.save();
     }
 }

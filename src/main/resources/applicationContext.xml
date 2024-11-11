@@ -14,5 +14,16 @@
         <property name="bookDao" ref="bookDao" />
     </bean>
 
+<!--    构造方法实例化 bean-->
     <bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />
+
+<!--    静态工厂实例化 bean-->
+    <bean id="bookDao1" class="vip.dengwj.factory.BookDaoFactory" factory-method="getBookDao" />
+
+<!--    实例工厂实例化 bean-->
+    <bean id="bookDaoFactory" class="vip.dengwj.factory.InBookDaoFactory" />
+    <bean id="bookDao2" factory-bean="bookDaoFactory" factory-method="getBookDao" />
+
+<!--    FactoryBean 实现 spring 提供的接口-->
+    <bean id="bookDao3" class="vip.dengwj.factory.BookDaoFactoryImpl" />
 </beans>

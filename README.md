@@ -22,12 +22,39 @@
 * 属性列表：
 * 1、id：bean 的 id，使用容器可以通过 id 值获取对应的 bean，在一个容器中 id 值唯一
 * 2、class：bean 的类型，即配置的 bean 的全路径类名
-* <bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />
+* (<bean id="bookDao" class="vip.dengwj.dao.impl.BookDaoImpl" />)
 
 ### bean 别名配置
 * name 属性：定义 bean 的别名，可定义多个，使用逗号 分号 空格分隔均可
-* <bean id="bookService" name="bookService2 bookService3" class="vip.dengwj.service.impl.BookServiceImpl" />
+* (<bean id="bookService" name="bookService2 bookService3" class="vip.dengwj.service.impl.BookServiceImpl" />)
 
 ### bean 作用范围配置
 * scope 属性：定义 bean 的作用范围，singleton 单列，prototype 非单列
-* <bean id="bookService" name="bookService2 bookService3" class="vip.dengwj.service.impl.BookServiceImpl" scope="prototype" />
+* (<bean id="bookService" name="bookService2 bookService3" class="vip.dengwj.service.impl.BookServiceImpl" scope="prototype" />)
+
+### bean 作用范围说明
+* 为什么 bean 默认为单例？节省资源，非单例的话每获取一个 bean 都会创建
+* 适合交给容器进行管理的 bean： 表现层对象、业务层对象、数据层对象、工具对象
+* 不适合交给容器进行管理的 bean：封装实体的域对象
+
+### bean 实例化 
+* bean 本质上就是对象，创建 bean 使用构造方法完成
+* 1、构造方法方式：无参构造方法如果不存在，将抛出异常 BeanCreationException
+* 2、静态工厂方式：(<bean id="bookDao1" class="vip.dengwj.factory.BookDaoFactory" factory-method="getBookDao" />)
+* 3、实例工厂的方式：
+* (<bean id="bookDaoFactory" class="vip.dengwj.factory.InBookDaoFactory" />
+  <bean id="bookDao2" factory-bean="bookDaoFactory" factory-method="getBookDao" />)
+* 4、FactoryBean 接口的方式
+```java
+public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
+    @Override
+    public BookDao getObject() throws Exception {
+        return new BookDaoImpl();
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return BookDao.class;
+    }
+}
+```
