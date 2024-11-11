@@ -119,3 +119,49 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
 * 使用按类型装配时（byType）必须保证容器中相同类型的 bean 唯一，推荐使用
 * 使用按名称装配时（byName）必须保证容器中具有指定名称的 bean，因变量名与配置耦合，不推荐使用
 * 自动装配优先级低于 setter 注入与构造器注入，同时出现时自动装配配置失效
+
+### 集合注入
+* 数组、List、Set、Map、Properties
+```xml
+<!--    集合注入-->
+    <bean id="collectionDao" class="vip.di.dao.impl.CollectionDaoImpl">
+        <property name="arr">
+            <array>
+                <value>10</value>
+                <value>20</value>
+                <value>30</value>
+            </array>
+        </property>
+
+        <property name="list">
+            <list>
+                <value>朴睦</value>
+                <value>李雷</value>
+                <value>韩梅梅</value>
+            </list>
+        </property>
+
+        <property name="set">
+            <set>
+                <value>朴睦</value>
+                <value>朴睦</value>
+                <value>朴睦</value>
+                <value>王阳明</value>
+            </set>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="name" value="朴睦" />
+                <entry key="address" value="上海市" />
+            </map>
+        </property>
+
+        <property name="properties">
+            <props>
+                <prop key="age">24</prop>
+                <prop key="sex">男</prop>
+            </props>
+        </property>
+    </bean>
+```

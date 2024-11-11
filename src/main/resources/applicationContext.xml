@@ -64,4 +64,46 @@
     </bean>
     <!--    自动装配-->
     <bean id="userService" class="vip.di.service.impl.UserServiceImpl" autowire="byType" />
+
+<!--    集合注入-->
+    <bean id="collectionDao" class="vip.di.dao.impl.CollectionDaoImpl">
+        <property name="arr">
+            <array>
+                <value>10</value>
+                <value>20</value>
+                <value>30</value>
+            </array>
+        </property>
+
+        <property name="list">
+            <list>
+                <value>朴睦</value>
+                <value>李雷</value>
+                <value>韩梅梅</value>
+            </list>
+        </property>
+
+        <property name="set">
+            <set>
+                <value>朴睦</value>
+                <value>朴睦</value>
+                <value>朴睦</value>
+                <value>王阳明</value>
+            </set>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="name" value="朴睦" />
+                <entry key="address" value="上海市" />
+            </map>
+        </property>
+
+        <property name="properties">
+            <props>
+                <prop key="age">24</prop>
+                <prop key="sex">男</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
