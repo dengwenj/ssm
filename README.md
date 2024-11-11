@@ -108,3 +108,14 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
 <constructor-arg name="userDao" ref="userDao" />
 </bean>
 ```
+
+### 依赖自动装配
+* IOC 容器根据 bean 所依赖的资源在容器中自动查找并注入到 bean 中的过程称为自动装配
+* 自动装配方式：按类型（常用）、按名称、按构造方法
+*  autowire 属性：（<bean id="userService" class="vip.di.service.impl.UserServiceImpl" autowire="byType" />）
+
+### 依赖自动装配特征
+* 自动装配用于引用类型依赖注入，不能对简单类型进行操作
+* 使用按类型装配时（byType）必须保证容器中相同类型的 bean 唯一，推荐使用
+* 使用按名称装配时（byName）必须保证容器中具有指定名称的 bean，因变量名与配置耦合，不推荐使用
+* 自动装配优先级低于 setter 注入与构造器注入，同时出现时自动装配配置失效

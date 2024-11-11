@@ -42,16 +42,26 @@
 <!--    </bean>-->
 
 <!--    构造器注入-->
+<!--    <bean id="userDao" class="vip.di.dao.impl.UserDaoImpl">-->
+<!--&lt;!&ndash;        这个 name 是参数名，要对应&ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg name="name" value="李雷" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg name="age" value="20" />&ndash;&gt;-->
+<!--&lt;!&ndash;        位置的方式&ndash;&gt;-->
+<!--        <constructor-arg index="0" value="李雷" />-->
+<!--        <constructor-arg index="1" value="20" />-->
+<!--&lt;!&ndash;        type 的方式&ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="userService" class="vip.di.service.impl.UserServiceImpl">-->
+<!--        <constructor-arg name="userDao" ref="userDao" />-->
+<!--    </bean>-->
+
+
+<!--    自动装配-->
+    <bean id="studentService" class="vip.di.service.impl.StudentServiceImpl" />
     <bean id="userDao" class="vip.di.dao.impl.UserDaoImpl">
-<!--        这个 name 是参数名，要对应-->
-<!--        <constructor-arg name="name" value="李雷" />-->
-<!--        <constructor-arg name="age" value="20" />-->
-<!--        位置的方式-->
-        <constructor-arg index="0" value="李雷" />
-        <constructor-arg index="1" value="20" />
-<!--        type 的方式-->
+        <constructor-arg index="0" value="哈哈" />
+        <constructor-arg index="1" value="123456" />
     </bean>
-    <bean id="userService" class="vip.di.service.impl.UserServiceImpl">
-        <constructor-arg name="userDao" ref="userDao" />
-    </bean>
+    <!--    自动装配-->
+    <bean id="userService" class="vip.di.service.impl.UserServiceImpl" autowire="byType" />
 </beans>
