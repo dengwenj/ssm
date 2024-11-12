@@ -201,3 +201,19 @@ xmlns:context="http://www.springframework.org/schema/context"
         <property name="password" value="${jdbc.password}" />
     </bean>
 ```
+
+### 容器
+* 创建容器的方式
+* 1、类路径加载配置文件：ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+* 2、文件路径加载配置文件：ApplicationContext ctx = new FileSystemXmlApplicationContext("绝对路径");
+* 3、加载多个配置文件：ApplicationContext ctx = new ClassPathXmlApplicationContext("bean1.xml", "bean2.xml");
+
+### 获取 bean
+* 1、使用 bean 名称获取：UserDao userDao = (UserDao) ctx.getBean("userDao");
+* 2、使用 bean 名称获取并指定类型：UserDao userDao = ctx.getBean("userDao", UserDao.class);
+* 3、使用 bean 类型获取：UserDao userDao = ctx.getBean(UserDao.class);
+
+### BeanFactory 初始化
+* Resource re = new ClassPathResource("applicationContext.xml");
+* BeanFactory bf = new XmlBeanFactory(re);
+* BeanFactory 创建完毕后，所有的 bean 均为延迟加载
