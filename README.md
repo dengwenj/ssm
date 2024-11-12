@@ -257,3 +257,22 @@ xmlns:context="http://www.springframework.org/schema/context"
 * 类型匹配与索引匹配
 * setter 注入引用类型 (<property name="属性名" ref="参数的引用值" />)
 * 集合注入 list （<property><list>...</list></property>）
+
+### 注解开发定义 bean
+* 使用 @Component 定义 bean，@Component 就是创建 bean 对象的，放入容器中
+* @Component("bookDao")
+* public class BookDaoImpl implements BookDao {}
+* 核心配置文件中通过组件扫描加载 bean
+* （<context:component-scan base-package="vip.dengwenj"）
+* Spring 提供 @Component 注解的三个衍生注解：@Controller、@Service、@Repository，它们的作用一样，只是见名知意
+```java
+//@Component("BookService")
+// 不写 value，getBean 获取的时候通过 Class 类型获取
+@Service
+public class BookServiceImpl implements BookService {
+    @Override
+    public void save() {
+        System.out.println("BookServiceImpl...");
+    }
+}
+```
