@@ -258,7 +258,7 @@ xmlns:context="http://www.springframework.org/schema/context"
 * setter 注入引用类型 (<property name="属性名" ref="参数的引用值" />)
 * 集合注入 list （<property><list>...</list></property>）
 
-### 注解开发定义 bean
+### 注解开发定义 bean（@Component 用来定义 bean 对象的）
 * 使用 @Component 定义 bean，@Component 就是创建 bean 对象的，放入容器中
 * @Component("bookDao")
 * public class BookDaoImpl implements BookDao {}
@@ -276,3 +276,12 @@ public class BookServiceImpl implements BookService {
     }
 }
 ```
+
+### 纯注解开发
+* Spring3.0 开启了纯注解开发模式，使用 Java 类替代配置文件，开启了 Spring 快速开发赛道
+* Java 类代替 Spring 核心配置文件
+* @Configuration 注解用于设定当前类为配置类，相当于 xml 配置文件中的开头那些配置
+* @ComponentScan 注解用于设定扫描路径，此注解只能添加一次，多个数据用数组格式，相当于 xml 配置文件中的 <context:component-scan base-package="vip.dengwenj"
+* @ComponentScan({"vip.dengwj.dao", "vip.dengwj.service"})
+* 读取 Spring 核心配置文件初始化容器对象切换为读取 java 配置类初始化容器对象
+* ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class)
