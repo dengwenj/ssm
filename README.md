@@ -165,3 +165,13 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
         </property>
     </bean>
 ```
+
+### 数据源对象管理（第三方）
+```xml
+<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/c" />
+        <property name="username" value="pumu" />
+        <property name="password" value="123456" />
+     </bean>
+```
