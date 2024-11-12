@@ -217,3 +217,43 @@ xmlns:context="http://www.springframework.org/schema/context"
 * Resource re = new ClassPathResource("applicationContext.xml");
 * BeanFactory bf = new XmlBeanFactory(re);
 * BeanFactory 创建完毕后，所有的 bean 均为延迟加载
+
+### 核心容器的总结
+### 容器相关
+* 1、BeanFactory 是 IOC 容器的顶层接口，初始化 BeanFactory 对象时，加载的 bean 延迟加载
+* 2、ApplicationContext 接口是 Spring 容器的核心接口，初始化时 bean 立即加载
+* 3、ApplicationContext 接口提供基础的 bean 操作相关方法，通过其他接口扩展其功能
+* 4、ApplicationContext 接口常用初始化类（创建容器）：ClassPathXmlApplicationContext、FileSystemXmlApplicationContext
+
+### bean 相关
+* bean 的 Id
+* bean 别名
+* bean 类型，静态工厂类，FactoryBean 类(实现 spring 接口)
+* 控制 bean 的实例数量
+* 生命周期初始化方法
+* 生命周期销毁方法
+* 自动装配类型
+* bean 工厂方法，应用于静态工厂或实例工厂
+* 实例工厂 bean
+* 控制 bean 延迟加载
+```xml
+<bean
+    id="bookDao"
+    name="dao daoImpl"
+    class="vip.di.dao.impl.CollectionDaoImpl"
+    scope="singleton"
+    init-method="init"
+    destroy-method="destroy"
+    autowire="byType"
+    factory-method="getInstance"
+    factory-bean=""
+    lazy-init="true" 
+/>
+```
+
+### 依赖注入相关
+* 构造器注入引用类型 (<constructor-arg name="属性名" ref="引用值" />)
+* 构造器注入简单类型
+* 类型匹配与索引匹配
+* setter 注入引用类型 (<property name="属性名" ref="参数的引用值" />)
+* 集合注入 list （<property><list>...</list></property>）
