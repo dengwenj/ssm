@@ -175,3 +175,29 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
         <property name="password" value="123456" />
      </bean>
 ```
+
+### 加载 properties 文件
+* 1、开启 context 命名空间
+* 2、使用 context 命名空间，加载指定 properties 文件
+* 3、使用 ${} 读取加载的属性值
+* 4、不加载系统属性 (<context:property-placeholder location="classpath*:*.properties" system-properties-mode="NEVER" />)
+* 5、加载多个 properties 文件 (<context:property-placeholder location="jdbc.properties,ww.properties" />)
+* 5、加载 properties 文件标准格式 (<context:property-placeholder location="classpath:*.jdbc.properties" />)
+* 6、从类路径或 jar 包中搜索并加载 properties 文件 (<context:property-placeholder location="classpath:*.*.properties" />)
+* 7、加载所有 properties 文件 (<context:property-placeholder location="*.properties" />)
+```xml
+<!--1、开启 context 命名空间-->
+xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd"
+<!--2、使用 context 命名空间，加载指定 properties 文件-->
+<context:property-placeholder location="classpath*:*.properties" system-properties-mode="NEVER" />
+<!--3、使用 ${} 读取加载的属性值-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+```
