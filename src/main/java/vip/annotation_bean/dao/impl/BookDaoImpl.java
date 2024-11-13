@@ -1,5 +1,6 @@
 package vip.annotation_bean.dao.impl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,12 @@ import javax.annotation.PreDestroy;
 //@Scope("prototype")
 @Scope("singleton")
 public class BookDaoImpl implements BookDao {
+    @Value("${jdbc.username}")
+    private String name;
+
     @Override
     public void save() {
-        System.out.println("BookDaoImpl...");
+        System.out.println("BookDaoImpl..." + name);
     }
 
     @PostConstruct

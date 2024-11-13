@@ -1,5 +1,5 @@
 package vip.annotation_bean.service;
 
 public interface BookService {
-    void save();
+    void save() throws NoSuchFieldException;
 }

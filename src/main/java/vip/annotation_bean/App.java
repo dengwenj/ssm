@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import vip.annotation_bean.config.SpringConfig;
 import vip.annotation_bean.dao.BookDao;
 import vip.annotation_bean.service.BookService;
+import vip.annotation_bean.service.impl.BookServiceImpl;
 
 public class App {
     public static void main(String[] args) {
@@ -18,15 +19,18 @@ public class App {
         //bookService.save();
 
         // 通过 java 配置类的方式
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        BookDao bookDao = (BookDao) context.getBean("BookDao");
-        System.out.println(bookDao);
-        bookDao.save();
-        BookDao bookDao1 = (BookDao) context.getBean("BookDao");
-        System.out.println(bookDao1);
-        BookService bookService = context.getBean(BookService.class);
-        bookService.save();
+        //AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        //BookDao bookDao = (BookDao) context.getBean("BookDao");
+        //System.out.println(bookDao);
+        //bookDao.save();
+        //BookDao bookDao1 = (BookDao) context.getBean("BookDao");
+        //System.out.println(bookDao1);
+        //BookService bookService = context.getBean(BookService.class);
+        //bookService.save();
+        //context.close();
 
-        context.close();
+        ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        BookServiceImpl bookService = context.getBean(BookServiceImpl.class);
+        bookService.save();
     }
 }

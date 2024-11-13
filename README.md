@@ -315,5 +315,39 @@ public class BookDaoImpl implements BookDao {
         System.out.println("BookDaoImpl.destroy...");
     }
 }
+```
 
+### 依赖注入
+* 使用 @Autowired 注解开启自动装配模式（按类型）
+* 注意：
+* 1、自动装配基于反射设计创建对象并暴力反射对应属性为私有属性初始化数据，因此无需提供 setter 方法
+* 2、自动装配建议使用无参构造方法创建对象（默认），如果不提供对应构造方法，提供唯一的构造方法
+* 使用 @Qualifier("BookDao") 注解开启指定名称装配 bean，必须配合 @Autowired 注解使用
+```java
+@Service
+public class BookServiceImpl implements BookService {
+    @Autowired
+    @Qualifier("BookDao") // 指定 哪个 bean
+    private BookDao bookDao;
+
+    @Override
+    public void save() {
+        System.out.println("BookServiceImpl...");
+        bookDao.save();
+    }
+}
+```
+* 使用 @Value 实现简单类型注入
+* 使用 @PropertySource 注解加载 properties 文件，路径仅支持单一文件配置，多文件使用数组格式配置，不允许使用通配符*
+```java
+@Configuration
+@ComponentScan({"vip.annotation_bean.dao", "vip.annotation_bean.service"})
+@PropertySource({"jdbc.properties"})
+public class SpringConfig {
+
+}
+public class BookDaoImpl implements BookDao {
+    @Value("${jdbc.username}")
+    private String name;
+}
 ```
