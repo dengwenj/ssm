@@ -366,7 +366,7 @@ public class SpringConfig {
 
 }
 
-public class JdbcConf {
+public class JdbcConf { 
     // 定义一个方法获得要管理的对象
     // 添加 @bean，表示当前方法的返回值是一个 bean
     @Bean
@@ -376,6 +376,36 @@ public class JdbcConf {
         ds.setUrl("jdbc:mysql://127.0.0.1:3306/vip");
         ds.setUsername("pumu");
         ds.setPassword("123456");
+        return ds;
+    }
+}
+```
+
+### 第三方 bean 注入资源（依赖注入）
+* 引用类型：方法形参方式
+* 简单类型：成员变量方式
+* 引用类型注入只需要为 bean 定义方法设置形参即可，容器会根据类型自动装配对象
+```java
+public class JdbcConf {
+    @Value("${jdbc.driver}")
+    private String driverClassName;
+    @Value("${jdbc.url}")
+    private String url;
+    @Value("${jdbc.username}")
+    private String username;
+    @Value("${jdbc.password}")
+    private String password;
+
+    // 定义一个方法获得要管理的对象
+    // 添加 @bean，表示当前方法的返回值是一个 bean
+    @Bean
+    public DataSource getDataSource(BookDao bookDao) {
+        System.out.println("JdbcConf -> " + bookDao);
+        DruidDataSource ds = new DruidDataSource();
+        ds.setDriverClassName(driverClassName);
+        ds.setUrl(url);
+        ds.setUsername(username);
+        ds.setPassword(password);
         return ds;
     }
 }

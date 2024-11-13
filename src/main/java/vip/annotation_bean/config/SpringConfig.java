@@ -6,6 +6,7 @@ import org.springframework.context.annotation.*;
 import javax.sql.DataSource;
 
 @Configuration
+// 要扫描添加到容器的 bean
 @ComponentScan({"vip.annotation_bean.dao", "vip.annotation_bean.service"})
 @PropertySource({"jdbc.properties"})
 @Import({JdbcConf.class})

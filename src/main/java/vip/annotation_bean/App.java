@@ -9,6 +9,7 @@ import vip.annotation_bean.service.BookService;
 import vip.annotation_bean.service.impl.BookServiceImpl;
 
 import javax.sql.DataSource;
+import java.util.Random;
 
 public class App {
     public static void main(String[] args) {
@@ -36,5 +37,7 @@ public class App {
         bookService.save();
         DataSource dataSource = context.getBean(DataSource.class);
         System.out.println(dataSource);
+        Random random = context.getBean(Random.class);
+        System.out.println(random);
     }
 }
