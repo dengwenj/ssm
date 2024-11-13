@@ -285,3 +285,35 @@ public class BookServiceImpl implements BookService {
 * @ComponentScan({"vip.dengwj.dao", "vip.dengwj.service"})
 * 读取 Spring 核心配置文件初始化容器对象切换为读取 java 配置类初始化容器对象
 * ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class)
+
+### bean 作用范围
+* 使用 @Scope 定义 bean 作用范围
+* @Scope("singleton") 单例
+* @Scope("prototype") 多个
+* public class BookDaoImpl {}
+
+### bean 生命周期
+* 使用 @PostConstruct、@PreDestroy 定义 bean 生命周期
+```java
+//@Component("BookDao")
+@Repository("BookDao")
+//@Scope("prototype")
+@Scope("singleton")
+public class BookDaoImpl implements BookDao {
+    @Override
+    public void save() {
+        System.out.println("BookDaoImpl...");
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("BookDaoImpl init...");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("BookDaoImpl.destroy...");
+    }
+}
+
+```

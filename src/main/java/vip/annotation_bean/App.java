@@ -18,10 +18,15 @@ public class App {
         //bookService.save();
 
         // 通过 java 配置类的方式
-        ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         BookDao bookDao = (BookDao) context.getBean("BookDao");
+        System.out.println(bookDao);
         bookDao.save();
+        BookDao bookDao1 = (BookDao) context.getBean("BookDao");
+        System.out.println(bookDao1);
         BookService bookService = context.getBean(BookService.class);
         bookService.save();
+
+        context.close();
     }
 }
