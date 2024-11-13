@@ -110,6 +110,7 @@ public class BookDaoFactoryImpl implements FactoryBean<BookDao> {
 ```
 
 ### 依赖自动装配
+* 自动装配就可以不用写 <property name="" ref="" 了，回去自动装配对象中的引用属性了
 * IOC 容器根据 bean 所依赖的资源在容器中自动查找并注入到 bean 中的过程称为自动装配
 * 自动装配方式：按类型（常用）、按名称、按构造方法
 *  autowire 属性：（<bean id="userService" class="vip.di.service.impl.UserServiceImpl" autowire="byType" />）
@@ -410,3 +411,11 @@ public class JdbcConf {
     }
 }
 ```
+
+### XML 配置比对注解配置
+* 功能                   XML 配置                               注解
+* 定义 bean              bean标签，id属性，class属性              @Component，@ComponentScan
+* 设置依赖注入             setter、构造器、自动装配                 @Autowired@Qualifier，@Value
+* 配置第三方 bean         bean标签，静态工厂，实例工厂，FactoryBean  @Bean
+* 作用范围                scope属性                              @Scope
+* 生命周期                init-method，destroy-method            @PostConstructor，@PreDestroy
