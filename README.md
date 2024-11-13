@@ -346,8 +346,37 @@ public class BookServiceImpl implements BookService {
 public class SpringConfig {
 
 }
-public class BookDaoImpl implements BookDao {
+public class BookDaoImpl implements BookDao { 
     @Value("${jdbc.username}")
     private String name;
+}
+```
+
+### 管理第三方 bean
+* @Import 注解可以用于在配置类中导入其他配置类，@Import在一个配置类中只能使用一次，多个类用数组的方式
+```java
+@Configuration
+@ComponentScan({"vip.annotation_bean.dao", "vip.annotation_bean.service"})
+@PropertySource({"jdbc.properties"})
+@Import({JdbcConf.class}) // 可以写多个类
+// 错误
+//@Import({JdbcConf.class})
+//@Import({JdbcConf.class})
+public class SpringConfig {
+
+}
+
+public class JdbcConf {
+    // 定义一个方法获得要管理的对象
+    // 添加 @bean，表示当前方法的返回值是一个 bean
+    @Bean
+    public DataSource getDataSource() {
+        DruidDataSource ds = new DruidDataSource();
+        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setUrl("jdbc:mysql://127.0.0.1:3306/vip");
+        ds.setUsername("pumu");
+        ds.setPassword("123456");
+        return ds;
+    }
 }
 ```
