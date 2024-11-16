@@ -61,3 +61,17 @@ public class MybatisDemo {
         from tb_brand;
     </select>
 ```
+
+### 查询详情
+* 参数占位符：
+* 1、#{}：执行 SQL 时，会将 #{} 占位符替换成 ?，将来自动设置参数值
+* 2、${}：拼 SQL，会存在 SQL 注入问题
+* 使用时机：参数传递都是用 #{}，如果要对表名、列名进行动态设置，只能使用 ${} 进行 sql 拼接
+* parameterType：用于设置参数类型，该参数可以省略
+* SQL 语句中特殊字符处理：转义字符、《!【CDATA【内容】】》
+```xml
+<!--    查询详情 &lt; 小于-->
+    <select id="selectById" resultMap="brand">
+        select * from tb_brand where id = #{id};
+    </select>
+```

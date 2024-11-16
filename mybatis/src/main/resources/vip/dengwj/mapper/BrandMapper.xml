@@ -37,4 +37,9 @@
         select id, brand_name, company_name, ordered, description, status
         from tb_brand;
     </select>
+
+<!--    查询详情 &lt; 小于-->
+    <select id="selectById" resultMap="brand">
+        select * from tb_brand where id = #{id};
+    </select>
 </mapper>

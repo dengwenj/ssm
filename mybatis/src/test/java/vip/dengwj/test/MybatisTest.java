@@ -34,6 +34,14 @@ public class MybatisTest {
         return sqlSessionFactory.openSession();
     }
 
+    @Test
+    public void selectById() {
+        SqlSession sqlSession = getSqlSession();
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        Brand brand = brandMapper.selectById(1);
+        System.out.println(brand);
+    }
+
     public static void closeSqlSession(SqlSession sqlSession) {
         if (sqlSession != null) {
             sqlSession.close();

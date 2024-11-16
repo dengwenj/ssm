@@ -9,4 +9,9 @@ public interface BrandMapper {
      * 获取所有
      */
     List<Brand> selectAll();
+
+    /**
+     * 查询详情
+     */
+    Brand selectById(Integer id);
 }
