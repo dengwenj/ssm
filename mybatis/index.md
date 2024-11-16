@@ -26,3 +26,11 @@ public class MybatisDemo {
     }
 }
 ```
+
+### Mapper 代理开发
+* 目的：解决原生方式中的硬编码，简化后期执行 sql
+* 使用 Mapper 代理：
+* 1、定义与 SQL 映射文件同名的 Mapper 接口，并且将 Mapper 接口和 SQL 映射文件放置在同一个目录下
+* 2、设置 SQL 映射文件的 namespace 属性为 Mapper 接口全限定名
+* 3、在 Mapper 接口中定义方法，方法名就是 SQL 映射文件中 sql语句的 id，并保持参数类型和返回值类型一致
+* 4、编码：通过 SqlSession 的 getMapper 方法获取 Mapper 接口的代理对象，调用对应方法完成 sql 的执行

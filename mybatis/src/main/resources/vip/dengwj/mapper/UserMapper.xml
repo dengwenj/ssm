@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace 命名空间-->
-<mapper namespace="test">
+<mapper namespace="vip.dengwj.mapper.UserMapper">
     <select id="selectAll" resultType="vip.dengwj.pojo.User">
-        select * from user;
+        select id, username, password, gender, address from user;
     </select>
 </mapper>

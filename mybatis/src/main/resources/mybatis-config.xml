@@ -16,6 +16,9 @@
     </environments>
     <mappers>
 <!--        加载 sql 映射文件-->
-        <mapper resource="UserMapper.xml"/>
+<!--        <mapper resource="UserMapper.xml"/>-->
+<!--        <mapper resource="vip/dengwj/mapper/UserMapper.xml" />-->
+<!--        如果 Mapper 接口名称和 SQL 映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化 SQL 映射文件的加载-->
+        <package name="vip.dengwj.mapper"/>
     </mappers>
 </configuration>
