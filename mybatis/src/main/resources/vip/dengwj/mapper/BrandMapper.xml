@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 命名空间-->
+<mapper namespace="vip.dengwj.mapper.BrandMapper">
+<!--    <sql id="brand_columns">-->
+<!--        id, brand_name as brandName, company_name as companyName, ordered, description, status-->
+<!--    </sql>-->
+<!--&lt;!&ndash;    sql 标签引用&ndash;&gt;-->
+<!--    <select id="selectAll" resultType="vip.dengwj.pojo.Brand">-->
+<!--        select <include refid="brand_columns" />-->
+<!--        from tb_brand;-->
+<!--    </select>-->
+
+<!--    起别名-->
+<!--    <select id="selectAll" resultType="vip.dengwj.pojo.Brand">-->
+<!--        select id, brand_name as brandName, company_name as companyName, ordered, description, status-->
+<!--        from tb_brand;-->
+<!--    </select>-->
+
+<!--   <select id="selectAll" resultType="vip.dengwj.pojo.Brand">-->
+<!--       select id, brand_name, company_name, ordered, description, status from tb_brand;-->
+<!--   </select>-->
+
+    <!--
+        id：唯一标识，type：映射的类型，支持别名。
+        在 <select> 标签中，使用 resultMap 属性替换 resultType 属性
+    -->
+    <resultMap id="brand" type="vip.dengwj.pojo.Brand">
+        <!--        id标签：完成主键字段的映射。column：表的列名，property：实体类的属性名-->
+        <!--        result标签：完成一般字段的映射-->
+        <result column="brand_name" property="brandName" />
+        <result column="company_name" property="companyName" />
+    </resultMap>
+    <select id="selectAll" resultMap="brand">
+        select id, brand_name, company_name, ordered, description, status
+        from tb_brand;
+    </select>
+</mapper>
