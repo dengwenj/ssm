@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mybatis</module>
+        <module>spring</module>
     </modules>
 
     <properties>
