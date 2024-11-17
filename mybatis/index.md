@@ -150,3 +150,29 @@ public class MybatisDemo {
     values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
 </insert>
 ```
+
+### 更新
+```xml
+<!--动态更新-->
+<update id="updateById">
+    update tb_brand
+    <set>
+        <if test="brandName != null and brandName != ''">
+            brand_name = #{brandName},
+        </if>
+        <if test="companyName != null and companyName != ''">
+            company_name = #{companyName},
+        </if>
+        <if test="status != null">
+            status = #{status},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        <if test="ordered != null">
+            ordered = #{ordered},
+        </if>
+    </set>
+    where id = #{id}
+</update>
+```

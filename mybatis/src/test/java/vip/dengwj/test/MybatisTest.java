@@ -80,6 +80,19 @@ public class MybatisTest {
         closeSqlSession(sqlSession);
     }
 
+    @Test
+    public void updateById() {
+        SqlSession sqlSession = getSqlSession();
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        Brand brand = new Brand();
+        brand.setId(1);
+        brand.setDescription("小米：永远相信美好的事情即将发生");
+        int i = brandMapper.updateById(brand);
+        sqlSession.commit();
+        System.out.println("影响的行数" + i);
+        closeSqlSession(sqlSession);
+    }
+
 
 
 
