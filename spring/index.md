@@ -419,3 +419,40 @@ public class JdbcConf {
 * 配置第三方 bean         bean标签，静态工厂，实例工厂，FactoryBean  @Bean
 * 作用范围                scope属性                              @Scope
 * 生命周期                init-method，destroy-method            @PostConstructor，@PreDestroy
+
+### Spring 整合 Mybatis
+```java
+public class App2 {
+  public static void main(String[] args) {
+    ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+    UserMapper userMapper = context.getBean(UserMapper.class);
+    List<User> users = userMapper.selectAll();
+    System.out.println(users);
+  }
+}
+
+@Configuration
+@ComponentScan("vip.spring_mybatis")
+@PropertySource("classpath:jdbc.properties")
+@Import({JdbcConfig.class, MybatisConfig.class})
+public class SpringConfig {
+    
+}
+
+public class MybatisConfig {
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource) {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        return sqlSessionFactoryBean;
+    }
+
+    // mybatisConfig 中的 Mappers 标签
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer() {
+        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+        mapperScannerConfigurer.setBasePackage("vip.spring_mybatis.mapper");
+        return mapperScannerConfigurer;
+    }
+}
+```
