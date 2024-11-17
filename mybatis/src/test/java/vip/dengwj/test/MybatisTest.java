@@ -93,6 +93,26 @@ public class MybatisTest {
         closeSqlSession(sqlSession);
     }
 
+    @Test
+    public void deleteById() {
+        SqlSession sqlSession = getSqlSession();
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        int i = brandMapper.deleteById(5);
+        System.out.println("影响的行数" + i);
+        sqlSession.commit();
+        closeSqlSession(sqlSession);
+    }
+
+    @Test
+    public void deleteByIds() {
+        SqlSession sqlSession = getSqlSession();
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        int i = brandMapper.deleteByIds(new Integer[]{4, 5, 6});
+        System.out.println("影响的行数" + i);
+        sqlSession.commit();
+        closeSqlSession(sqlSession);
+    }
+
 
 
 

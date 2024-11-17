@@ -1,6 +1,5 @@
 package vip.dengwj.mapper;
 
-import com.sun.javafx.collections.MappingChange;
 import org.apache.ibatis.annotations.Param;
 import vip.dengwj.pojo.Brand;
 
@@ -39,4 +38,14 @@ public interface BrandMapper {
      * 更新
      */
     int updateById(Brand brand);
+
+    /**
+     * 删除
+     */
+    int deleteById(Integer id);
+
+    /**
+     * 删除多个
+     */
+    int deleteByIds(@Param("ids") Integer[] ids);
 }

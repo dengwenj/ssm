@@ -176,3 +176,22 @@ public class MybatisDemo {
     where id = #{id}
 </update>
 ```
+
+### 删除
+* 批量删除：mybatis 会将数组参数，封装为一个 Map 集合。默认：array = 数组，使用 @Param 注解改变 map 集合的默认 key 的名称
+```xml
+<!--    删除单个-->
+    <delete id="deleteById">
+        delete
+        from tb_brand
+        where id = #{id};
+    </delete>
+<!--    删除多个-->
+    <delete id="deleteByIds">
+        delete from tb_brand
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+```
