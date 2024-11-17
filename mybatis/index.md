@@ -81,3 +81,36 @@ public class MybatisDemo {
 * 1、散装参数：需要使用 @Param("SQL 中的参数占位符名称")
 * 2、实体类封装参数：只需要保证 SQL 中的参数名和实体类属性名对应上，即可设置成功
 * 3、map集合：只需要保证 SQL 中的参数名和 map 集合的键的名称对应上，即可设置成功
+```xml
+<select id="selectByCondition" resultMap="brand">
+    select *
+    from tb_brand
+    where status = #{status}
+    and company_name like concat('%', #{companyName}, '%')
+    and brand_name like concat('%', #{brandName}, '%');
+</select>
+```
+
+### 多条件的动态查询
+* 动态 SQL：
+* 1、if：用于判断参数是否有值，使用 test 属性进行条件判断
+* 存在的问题：第一个条件不需要逻辑运算符
+* 解决方案：1、使用恒等式让所有条件格式都一样 where 1 = 1
+* 2、《where》标签替换 where 关键字。只有一个 if 的时候会去掉 and
+```xml
+<select id="selectByCondition" resultMap="brand">
+    select *
+    from tb_brand
+    <where>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="companyName != null and companyName != ''">
+            and company_name like concat('%', #{companyName}, '%')
+        </if>
+        <if test="brandName != null and brandName != ''">
+            and brand_name like concat('%', #{brandName}, '%')
+        </if>
+    </where>
+</select>
+```

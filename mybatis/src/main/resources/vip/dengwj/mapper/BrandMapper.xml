@@ -44,11 +44,28 @@
     </select>
 
 <!--    条件查询-->
+<!--    <select id="selectByCondition" resultMap="brand">-->
+<!--        select *-->
+<!--        from tb_brand-->
+<!--        where status = #{status}-->
+<!--          and company_name like concat('%', #{companyName}, '%')-->
+<!--          and brand_name like concat('%', #{brandName}, '%');-->
+<!--    </select>-->
+
+<!--    动态条件查询-->
     <select id="selectByCondition" resultMap="brand">
         select *
         from tb_brand
-        where status = #{status}
-          and company_name like concat('%', #{companyName}, '%')
-          and brand_name like concat('%', #{brandName}, '%');
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name like concat('%', #{companyName}, '%')
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name like concat('%', #{brandName}, '%')
+            </if>
+        </where>
     </select>
 </mapper>
