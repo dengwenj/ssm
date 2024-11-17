@@ -42,4 +42,13 @@
     <select id="selectById" resultMap="brand">
         select * from tb_brand where id = #{id};
     </select>
+
+<!--    条件查询-->
+    <select id="selectByCondition" resultMap="brand">
+        select *
+        from tb_brand
+        where status = #{status}
+          and company_name like concat('%', #{companyName}, '%')
+          and brand_name like concat('%', #{brandName}, '%');
+    </select>
 </mapper>

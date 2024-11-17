@@ -75,3 +75,9 @@ public class MybatisDemo {
         select * from tb_brand where id = #{id};
     </select>
 ```
+
+### 条件查询
+* SQL 语句设置多个参数有几种方式
+* 1、散装参数：需要使用 @Param("SQL 中的参数占位符名称")
+* 2、实体类封装参数：只需要保证 SQL 中的参数名和实体类属性名对应上，即可设置成功
+* 3、map集合：只需要保证 SQL 中的参数名和 map 集合的键的名称对应上，即可设置成功
