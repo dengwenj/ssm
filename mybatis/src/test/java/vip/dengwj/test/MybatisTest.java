@@ -64,7 +64,21 @@ public class MybatisTest {
         System.out.println("brands ->ww " + brands);
     }
 
-
+    @Test
+    public void add() {
+        SqlSession sqlSession = getSqlSession();
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        Brand brand = new Brand();
+        brand.setBrandName("三星");
+        brand.setCompanyName("三星有限公司");
+        brand.setDescription("三星很好");
+        brand.setOrdered(30);
+        brand.setOrdered(1);
+        brandMapper.add(brand);
+        // 手动提交
+        sqlSession.commit();
+        closeSqlSession(sqlSession);
+    }
 
 
 

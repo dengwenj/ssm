@@ -138,3 +138,15 @@ public class MybatisDemo {
     </where>
 </select>
 ```
+
+### 添加
+* Mybatis 事务：
+* 1、openSession()：默认开启事务，进行增删改操作后需要使用 sqlSession.commit(); 手动提交事务
+* 2、openSession(true)：可以设置为自动提交事务（关闭事务）
+* 主键返回：<insert id="add" useGeneratedKeys="true" keyProperty="id">
+```xml
+<insert id="add" useGeneratedKeys="true" keyProperty="id">
+    insert into tb_brand (brand_name, company_name, ordered, description, status)
+    values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
+</insert>
+```
