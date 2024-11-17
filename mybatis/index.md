@@ -223,3 +223,9 @@ public class MybatisDemo {
 * map.put("param1", 参数值1)
 * map.put("arg1", 参数值2)
 * map.put("param2", 参数值2)
+
+### 注解开发
+* @Select("select * from user where id = #{id}")
+* @Update(...)
+* @Delete(...)
+* @Insert(...)
