@@ -456,3 +456,19 @@ public class MybatisConfig {
     }
 }
 ```
+
+### Spring 整合 junit
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringConfig.class)
+public class TestUser {
+    @Autowired
+    private UserMapper userMapper;
+
+    @Test
+    public void testSelectUser() {
+        List<User> users = userMapper.selectAll();
+        System.out.println("users -> " + users);
+    }
+}
+```
