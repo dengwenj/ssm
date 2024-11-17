@@ -195,3 +195,31 @@ public class MybatisDemo {
         </foreach>
     </delete>
 ```
+
+### Mybatis 参数传递
+* Mybatis 接口方法中可以接收各种各样的参数，Mybatis 底层对于这些参数进行不同的封装处理方式
+* Mybatis 提供了 ParamNameResolve 类来进行参数封装
+* 单个参数：
+* 1、POJO类型(实体类)：直接使用，属性名和参数占位符名称一致
+* 2、Map 集合：直接使用，键名和参数占位符名称一致
+* 3、Collection：封装为 Map 集合，可以使用 @Param 注解，替换 Map 集合中默认的 arg0 键名
+* map.put("arg0", collection集合)
+* map.put("collection", collection集合)
+* 4、List：封装为 Map 集合，可以使用 @Param 注解，替换 Map 集合中默认的 arg0 键名
+* map.put("arg0", list集合)
+* map.put("collection", list集合)
+* map.put("list", list集合)
+* 5、Array：封装为 Map 集合，可以使用 @Param 注解，替换 Map 集合中默认的 arg0 键名
+* map.put("arg0", 数组)
+* map.put("array", 数组)
+* 6、其他类型：直接使用
+* 多个参数：封装为 Map 集合，可以使用 @Param 注解，替换 Map 集合中默认的 arg 键名
+* map.put("arg0", 参数值1)
+* map.put("param1", 参数值1)
+* map.put("arg1", 参数值2)
+* map.put("param2", 参数值2)
+* ------------@Param("username")----------
+* map.put("username", 参数值1)
+* map.put("param1", 参数值1)
+* map.put("arg1", 参数值2)
+* map.put("param2", 参数值2)
