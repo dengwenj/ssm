@@ -92,6 +92,7 @@ public class MybatisDemo {
 ```
 
 ### 多条件的动态查询
+* SQL 语句会随着用户的输入或外部条件的变化而变化，我们称为动态 SQL
 * 动态 SQL：
 * 1、if：用于判断参数是否有值，使用 test 属性进行条件判断
 * 存在的问题：第一个条件不需要逻辑运算符
@@ -111,6 +112,29 @@ public class MybatisDemo {
         <if test="brandName != null and brandName != ''">
             and brand_name like concat('%', #{brandName}, '%')
         </if>
+    </where>
+</select>
+```
+
+### 单条件的动态条件查询
+* 从多个条件中选择一个
+* choose(when, otherwise):选择，类似 java 中的 switch 语句。otherwise 相当于 default
+```xml
+<select id="selectByConditionSingle" resultMap="brand">
+    select *
+    from tb_brand
+    <where>
+        <choose>
+            <when test="status != null">
+                status = #{status}
+            </when>
+            <when test="companyName != null and companyName != ''">
+                company_name like concat('%', #{companyName}, '%')
+            </when>
+            <when test="brandName != null and brandName != ''">
+                brand_name like concat('%', #{brandName}, '%')
+            </when>
+        </choose>
     </where>
 </select>
 ```

@@ -68,4 +68,23 @@
             </if>
         </where>
     </select>
+
+<!--    单条件的动态sql 查询-->
+    <select id="selectByConditionSingle" resultMap="brand">
+        select *
+        from tb_brand
+        <where>
+            <choose>
+                <when test="status != null">
+                    status = #{status}
+                </when>
+                <when test="companyName != null and companyName != ''">
+                    company_name like concat('%', #{companyName}, '%')
+                </when>
+                <when test="brandName != null and brandName != ''">
+                    brand_name like concat('%', #{brandName}, '%')
+                </when>
+            </choose>
+        </where>
+    </select>
 </mapper>

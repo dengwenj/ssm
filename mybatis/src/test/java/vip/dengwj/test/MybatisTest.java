@@ -51,6 +51,19 @@ public class MybatisTest {
         closeSqlSession(sqlSession);
     }
 
+    @Test
+    public void selectByConditionSingle() {
+        SqlSession sqlSession = getSqlSession();
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+        Brand brand = new Brand();
+        //brand.setStatus(1);
+        //brand.setBrandName("小米");
+        brand.setCompanyName("小米");
+        System.out.println("brand -> " + brand);
+        List<Brand> brands = brandMapper.selectByConditionSingle(brand);
+        System.out.println("brands ->ww " + brands);
+    }
+
 
 
 

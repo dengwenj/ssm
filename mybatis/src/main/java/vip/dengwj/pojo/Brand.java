@@ -4,14 +4,14 @@ public class Brand {
     private Integer id;
     private String brandName;
     private String companyName;
-    private int ordered;
+    private Integer ordered;
     private String description;
-    private int status;
+    private Integer status;
 
     public Brand() {
     }
 
-    public Brand(Integer id, String brandName, String companyName, int ordered, String description, int status) {
+    public Brand(Integer id, String brandName, String companyName, Integer ordered, String description, Integer status) {
         this.id = id;
         this.brandName = brandName;
         this.companyName = companyName;
@@ -72,7 +72,7 @@ public class Brand {
      * 获取
      * @return ordered
      */
-    public int getOrdered() {
+    public Integer getOrdered() {
         return ordered;
     }
 
@@ -80,7 +80,7 @@ public class Brand {
      * 设置
      * @param ordered
      */
-    public void setOrdered(int ordered) {
+    public void setOrdered(Integer ordered) {
         this.ordered = ordered;
     }
 
@@ -104,7 +104,7 @@ public class Brand {
      * 获取
      * @return status
      */
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -112,7 +112,7 @@ public class Brand {
      * 设置
      * @param status
      */
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
