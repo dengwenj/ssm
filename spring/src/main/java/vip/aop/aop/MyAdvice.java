@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class MyAdvice {
-    @Pointcut("execution(void vip.aop.dao.BookDao.update())")
+    //@Pointcut("execution(void vip.aop.dao.BookDao.update())")
+    @Pointcut("execution(* vip.aop.*.*Dao.update(..))")
     private void pt() {}
 
     @Before("pt()")
