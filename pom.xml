@@ -84,5 +84,11 @@
             <artifactId>spring-test</artifactId>
             <version>5.2.0.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.7</version>
+        </dependency>
     </dependencies>
 </project>

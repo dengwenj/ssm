@@ -481,9 +481,25 @@ public class TestUser {
 ### AOP 核心概念
 * 连接点（JoinPoint）：程序执行过程中的任意位置，粒度为执行方法、抛出异常、设置变量等
 * 在 SpringAOP 中，理解为方法的执行
+* 
 * 切入点（Pointcut）：匹配连接点的式子
 * 在 SpringAOP 中，一个切入点可以只描述一个具体方法，也可以匹配多个方法
+* 
 * 通知（Advice）：在切入点处执行的操作，也就是共性功能
 * 在 SpringAOP 中，功能最终以方法的形式呈现
+* 
 * 通知类：定义通知的类
 * 切面（Aspect）：描述通知与切入点的对应关系
+```java
+@Component
+@Aspect
+public class MyAdvice {
+    @Pointcut("execution(void vip.aop.dao.BookDao.update())")
+    private void pt() {}
+
+    @Before("pt()")
+    public void method() {
+        System.out.println(System.currentTimeMillis());
+    }
+}
+```
