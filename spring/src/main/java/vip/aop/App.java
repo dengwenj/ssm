@@ -10,9 +10,11 @@ public class App {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         // 用了 AOP 之后 getBean 获取 bean 用接口的类型
         BookDao bookDao = context.getBean(BookDao.class);
-        System.out.println(bookDao); // vip.aop.dao.impl.BookDaoImpl@140c9f39
-        System.out.println(bookDao.getClass()); // class com.sun.proxy.$Proxy22
-        bookDao.save();
-        bookDao.update();
+        //System.out.println(bookDao); // vip.aop.dao.impl.BookDaoImpl@140c9f39
+        //System.out.println(bookDao.getClass()); // class com.sun.proxy.$Proxy22
+        //bookDao.save();
+        //bookDao.update();
+        int select = bookDao.select();
+        System.out.println(select);
     }
 }

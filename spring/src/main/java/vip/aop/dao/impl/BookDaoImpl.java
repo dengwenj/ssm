@@ -21,7 +21,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void select() {
+    public int select() {
         System.out.println("select book...");
+        //int a = 10 / 0;
+        return 24;
     }
 }

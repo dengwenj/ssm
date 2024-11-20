@@ -538,4 +538,62 @@ public class MyAdvice {
 * 访问控制修饰符针对接口开发均采用 public 描述(可省略)
 * 返回值类型对于增删改类使用精准类型加速匹配，对于查询类使用*通配快速描述
 * 包名书写尽量不使用..匹配，效率过低，常用*做单个包描述匹配，或精准匹配
-* 
+
+### AOP 通知类型
+* AOP 通知描述了抽取的共性功能，根据共性功能抽取的位置不同，最终运行代码时要将其加入到合理的位置
+* AOP 通知共分为 5 种类型：
+* 前置通知、后置通知、环绕通知、返回后通知、抛出异常后通知
+
+### @Before
+* 作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法前运行
+* 切入点方法名()，格式为类名.方法名()
+
+### @After
+* 作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法后运行
+
+### @Around(常用)
+* 作用：设置当前通知方法与切入点之间的绑定关系，当前通知方法在原始切入点方法前后运行
+* 注意事项：
+* 1、环绕通知必须依赖形参 ProceedingJoinPoint 才能实现对原始方法的调用，进而实现原始方法调用前后同时添加通知
+* 2、通知中如果未使用 ProceedingJoinPoint 对原始方法进行调用将跳过元素方法的执行（可以做些判断，是否运行调用）
+* 3、对元素方法的调用可以不接受返回值，通知方法设置成 void 即可，如果接收返回值，必须设定为 Object 类型
+* 4、原始方法的返回值如果是 void 类型，通知方法的返回值类型可以设置成 void，也可以设置成 Object
+* 5、由于无法预知原始方法运行后是否会抛出异常，因此环绕通知方法必须抛出 Throwable 对象
+
+### @AfterReturning
+* 当前通知方法在原始切入点方法正常执行完毕后运行
+
+### AfterThrowing
+* 当前通知方法在原始切入点方法运行抛出异常后执行
+```java
+@Before("pt2()")
+public void before() {
+    System.out.println("原始方法执行前运行");
+}
+
+@After("pt2()")
+public void after() {
+    System.out.println("原始方法执行后运行");
+}
+
+@Around("pt2()")
+public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+    System.out.println("around 前");
+    //if (...) {
+    //  joinPoint.proceed();
+    //}
+    Integer proceed = (Integer) joinPoint.proceed();
+    System.out.println("around 后");
+    return proceed + 19;
+}
+
+@AfterReturning("pt2()")
+public void afterReturning() {
+    System.out.println("原始方法返回后通知");
+}
+
+@AfterThrowing("pt2()")
+public void afterThrowable() {
+    System.out.println("原始方法抛出错误后通知");
+}
+```
