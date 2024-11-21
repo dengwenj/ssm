@@ -4,6 +4,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 @Aspect
 public class MyAdvice {
@@ -11,7 +13,7 @@ public class MyAdvice {
     @Pointcut("execution(* vip.aop.*.*Dao.update(..))")
     private void pt() {}
 
-    @Pointcut("execution(int vip.aop.dao.BookDao.select())")
+    @Pointcut("execution(int vip.aop.dao.BookDao.select(..))")
     private void pt2() {}
 
     @Before("pt()")
@@ -31,6 +33,8 @@ public class MyAdvice {
 
     @Around("pt2()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        Object[] args = joinPoint.getArgs();
+        System.out.println(Arrays.toString(args));
         System.out.println("around 前");
         Integer proceed = (Integer) joinPoint.proceed();
         System.out.println("around 后");

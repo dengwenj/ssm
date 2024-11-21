@@ -7,5 +7,5 @@ public interface BookDao {
 
     void delete();
 
-    int select();
+    int select(int a);
 }

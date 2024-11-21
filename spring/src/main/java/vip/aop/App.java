@@ -14,7 +14,7 @@ public class App {
         //System.out.println(bookDao.getClass()); // class com.sun.proxy.$Proxy22
         //bookDao.save();
         //bookDao.update();
-        int select = bookDao.select();
+        int select = bookDao.select(100);
         System.out.println(select);
     }
 }
