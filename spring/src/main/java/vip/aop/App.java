@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import vip.aop.config.SpringConfig;
 import vip.aop.dao.BookDao;
+import vip.aop.service.UserService;
 
 public class App {
     public static void main(String[] args) {

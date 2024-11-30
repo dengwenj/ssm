@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface UserService {
     List<User> findAll();
+
+    User findByUsernamePassword(String username, String password);
 }

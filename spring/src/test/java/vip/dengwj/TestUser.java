@@ -5,8 +5,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import vip.spring_mybatis.config.SpringConfig;
-import vip.spring_mybatis.mapper.UserMapper;
+import vip.aop.config.SpringConfig;
+import vip.aop.mapper.UserMapper;
+import vip.aop.service.UserService;
 import vip.spring_mybatis.pojo.User;
 
 import java.util.List;
@@ -16,10 +17,18 @@ import java.util.List;
 public class TestUser {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
     @Test
     public void testSelectUser() {
-        List<User> users = userMapper.selectAll();
+        List<User> users = userMapper.findAll();
         System.out.println("users -> " + users);
+    }
+
+    @Test
+    public void testGetUserByUsernamePassword() {
+        User user = userService.findByUsernamePassword("朴睦", "123456 ");
+        System.out.println("user -> " + user);
     }
 }

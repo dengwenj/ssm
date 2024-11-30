@@ -20,6 +20,6 @@ public class TestAOP {
     @Test
     public void testUserFindAll() {
         List<User> users = userService.findAll();
-        System.out.println(users);
+        System.out.println("users" + users);
     }
 }
