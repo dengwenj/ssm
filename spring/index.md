@@ -665,3 +665,21 @@ public class TimeAdvice {
 * Spring 注解式事务通常添加在业务层接口中而不会添加到业务层实现类中，降低耦合
 * 注解式事务可以添加到业务方法上表示当前方法开启事务，也可以添加到接口上表示当前接口所有方法开启事务
 * 事务管理器要根据实现技术进行选择，Mybatis 框架使用的是 JDBC 事务
+* 有些异常默认是不参与回滚的（IO）
+
+### Spring 事务角色
+* 事务管理员：发起事务方，在 Spring 中通常指代业务层开启事务的方法
+* 事务协调员：加入事务方，在 Spring 中通常指代数据层方法，也可以是业务层方法
+
+### 事务相关配置
+* readOnly：设置是否为只读事务
+* timeout：设置事务超时时间
+* rollbackFor：设置事务回滚异常（class）
+* rollbackForClassName：设置事务回滚异常（String）
+* noRollbackFor：设置事务不回滚异常（class）
+* noRollbackForClassName：设置事务不回滚异常（String）
+* propagation：设置事务传播行为
+
+### 事务传播行为
+* 事务传播行为：事务协调员对事物管理员所携带事务的处理态度
+* @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
