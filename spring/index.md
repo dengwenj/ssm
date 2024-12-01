@@ -666,6 +666,13 @@ public class TimeAdvice {
 * 注解式事务可以添加到业务方法上表示当前方法开启事务，也可以添加到接口上表示当前接口所有方法开启事务
 * 事务管理器要根据实现技术进行选择，Mybatis 框架使用的是 JDBC 事务
 * 有些异常默认是不参与回滚的（IO）
+```java 
+// 添加 Spring 事务，事务管理器
+    @Bean
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+```
 
 ### Spring 事务角色
 * 事务管理员：发起事务方，在 Spring 中通常指代业务层开启事务的方法
