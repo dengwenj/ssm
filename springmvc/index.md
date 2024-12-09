@@ -60,3 +60,27 @@ public class UserController {
 * 5、执行 save()
 * 6、检测到有 @ResponseBody 直接将 save() 方法的返回值作为响应体返回给请求方
 * Web容器 -> ServletContext -> WebApplicationContext -> UserController -> /save save()
+
+### Spring 和 SpringMVC bean 加载控制
+* SpringMVC 相关 bean(表现层 bean)
+* Spring 控制的 bean：业务bean(Service)、功能bean(DataSource等)
+
+### SpringMVC 相关 bean 加载控制
+* SpringMVC 加载的 bean 对应的包均在 ...controller 包内
+
+### Spring 相关 bean 加载控制
+* 方式一：Spring 加载的 bean 设定扫描范围为 vip.dengwj，排除 controller 包内的bean
+* 方式二：Spring 加载的 bean 设定扫描范围为精准范围，例如 service 包、dao包等
+* 方式三：不区分 Spring 与 SpringMVC 的环境，加载到同一个环境中
+```java
+@Configuration
+// 方式一
+//@ComponentScan({"vip.dengwj2.services", "vip.dengwj2.mapper"})
+// 方式二
+@ComponentScan(value = "vip.dengwj2", excludeFilters = @ComponentScan.Filter(
+    type = FilterType.ANNOTATION,
+    classes = {Controller.class}
+))
+public class SpringConfig {
+}
+```
