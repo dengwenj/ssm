@@ -2,7 +2,10 @@ package vip.dengwj.config;
 
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 // 定义一个 servlet 容器启动的配置类, tomcat 容器启动的时候会加载这个类
 public class ServletConfig extends AbstractDispatcherServletInitializer {
@@ -24,5 +27,12 @@ public class ServletConfig extends AbstractDispatcherServletInitializer {
     @Override
     protected WebApplicationContext createRootApplicationContext() {
         return null;
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        return new Filter[]{characterEncodingFilter};
     }
 }

@@ -16,4 +16,11 @@ public class UserController {
         System.out.println("user save...");
         return "{'module': 'info'}";
     }
+
+    @RequestMapping("/commonParams")
+    @ResponseBody
+    public String commonParams(String name, Integer age) {
+        System.out.println("姓名：" + name + ", " + "年龄：" + age);
+        return "{'module': 'commonParams'}";
+    }
 }

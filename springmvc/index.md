@@ -109,3 +109,20 @@ public class BookController {
     }
 }
 ```
+
+### 请求与响应
+### Get 请求参数
+* 普通参数：url 地址传参，地址参数名与形参变量名相同，定义形参即可接收参数
+
+### Post 请求参数
+* 普通参数：form 表单 post 请求传参，表单参数名与形参变量名相同，定义形参即可接收参数
+* post请求中文乱码处理：为 web 容器添加过滤器并指定字符集，Spring-web 包中提供了专用的字符过滤器
+```java
+// get post 都可以接收到
+@RequestMapping("/commonParams")
+@ResponseBody
+public String commonParams(String name, Integer age) {
+    System.out.println("姓名：" + name + ", " + "年龄：" + age);
+    return "{'module': 'commonParams'}";
+}
+```
