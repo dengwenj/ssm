@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan("vip.dengwj2.controller")
-public class SpringMVCConfig {
+public class SpringMVCConfig2 {
 }

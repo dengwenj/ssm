@@ -4,10 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+//@RequestMapping("/student")
 public class StudentController {
-    @RequestMapping("/student/save")
-    public String save() {
-        System.out.println("student save...");
-        return "student/save";
-    }
+    //@RequestMapping("/save")
+    //public String save() {
+    //    System.out.println("student save...");
+    //    return "student/save";
+    //}
 }

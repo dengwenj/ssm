@@ -72,15 +72,40 @@ public class UserController {
 * 方式一：Spring 加载的 bean 设定扫描范围为 vip.dengwj，排除 controller 包内的bean
 * 方式二：Spring 加载的 bean 设定扫描范围为精准范围，例如 service 包、dao包等
 * 方式三：不区分 Spring 与 SpringMVC 的环境，加载到同一个环境中
+* @Configuration 文件中只要扫到这个注解就会以配置的方式加载
 ```java
 @Configuration
 // 方式一
 //@ComponentScan({"vip.dengwj2.services", "vip.dengwj2.mapper"})
 // 方式二
 @ComponentScan(value = "vip.dengwj2", excludeFilters = @ComponentScan.Filter(
-    type = FilterType.ANNOTATION,
-    classes = {Controller.class}
+    type = FilterType.ANNOTATION, // 通过注解去排除
+    classes = {Controller.class} // 具体哪个注解
 ))
 public class SpringConfig {
+}
+```
+
+### 请求路径映射
+* 名称：@RequestMapping
+* 类型：方法注解 类注解
+* 位置：SpringMVC 控制器方法定义上方
+* 作用：设置当前控制器方法请求访问路径，如果设置在类上统一设置当前控制器方法请求访问路径前缀
+* 属性：value(默认)，请求访问路径，或访问路径前缀
+```java
+@Controller
+@RequestMapping("/book")
+public class BookController {
+    @RequestMapping("/save")
+    @ResponseBody
+    public String save() {
+        return "book/save";
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String delete() {
+        return "book/delete";
+    }
 }
 ```
