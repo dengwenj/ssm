@@ -161,4 +161,32 @@ public String list(@RequestParam List<String> list) {
     System.out.println(list + " <- list");
     return "{'module': 'list'}";
 }
+
+// json 方式传递参数
+@RequestMapping("/jsonlist")
+@ResponseBody
+public String jsonlist(@RequestBody List<String> list) {
+    System.out.println("list -> " + list);
+    return "{'module': 'jsonlist'}";
+}
+
+@RequestMapping("/jsonpojo")
+@ResponseBody
+public String jsonpojo(@RequestBody User user) {
+    System.out.println("user -> " + user);
+    return "{'module': 'jsonpojo'}";
+}
+
+@RequestMapping("/jsonlistpojo")
+@ResponseBody
+public String jsonlistpojo(@RequestBody List<User> list) {
+    System.out.println("list user ->" + list);
+    return "{'module': 'jsonlistpojo'}";
+}
 ```
+
+### @RequestBody
+* 形参注解，将请求中请求体所包含的数据传递给请求参数，此注解一个处理器方法只能使用一次
+
+### @EnableWebMvc
+* 配置类注解，开启 SpringMVC 多项辅助功能

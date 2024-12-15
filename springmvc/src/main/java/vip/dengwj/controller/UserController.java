@@ -1,6 +1,7 @@
 package vip.dengwj.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,5 +61,27 @@ public class UserController {
     public String list(@RequestParam List<String> list) {
         System.out.println(list + " <- list");
         return "{'module': 'list'}";
+    }
+
+    // json 方式传递参数
+    @RequestMapping("/jsonlist")
+    @ResponseBody
+    public String jsonlist(@RequestBody List<String> list) {
+        System.out.println("list -> " + list);
+        return "{'module': 'jsonlist'}";
+    }
+
+    @RequestMapping("/jsonpojo")
+    @ResponseBody
+    public String jsonpojo(@RequestBody User user) {
+        System.out.println("user -> " + user);
+        return "{'module': 'jsonpojo'}";
+    }
+
+    @RequestMapping("/jsonlistpojo")
+    @ResponseBody
+    public String jsonlistpojo(@RequestBody List<User> list) {
+        System.out.println("list user ->" + list);
+        return "{'module': 'jsonlistpojo'}";
     }
 }
