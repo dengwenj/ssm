@@ -190,3 +190,10 @@ public String jsonlistpojo(@RequestBody List<User> list) {
 
 ### @EnableWebMvc
 * 配置类注解，开启 SpringMVC 多项辅助功能
+
+### @RequestBody 和 @RequestParam 区别
+* 1、@RequestParam 用于接收 url 地址传参，表单传参【application/x-www-form-urlencoded】
+* 2、@RequestBody 用于接收 json 数据【application/json】
+* 应用：
+* 1、后期开发中，发送 json 格式数据为主，@RequestBody 应用较广
+* 2、如果发送非 json 格式数据，选用 @RequestParam 接收请求参数
