@@ -113,6 +113,10 @@ public class BookController {
 ### 请求与响应
 ### Get 请求参数
 * 普通参数：url 地址传参，地址参数名与形参变量名相同，定义形参即可接收参数
+* 普通参数：请求参数名与形参变量名不同，使用@RequestParam 绑定参数关系
+* POJO参数：请求参数名与形参对象属性名相同，定义 POJO 类型形参即可接收参数
+* 数组参数：请求参数名与形参对象属性名相同且请求参数为多个，定义数组类型形参即可接收参数
+* 集合保存普通参数：请求参数名与形参集合对象名相同且请求参数为多个，@RequestParam 绑定参数关系
 
 ### Post 请求参数
 * 普通参数：form 表单 post 请求传参，表单参数名与形参变量名相同，定义形参即可接收参数
@@ -124,5 +128,37 @@ public class BookController {
 public String commonParams(String name, Integer age) {
     System.out.println("姓名：" + name + ", " + "年龄：" + age);
     return "{'module': 'commonParams'}";
+}
+// 请求参数名与形参不同
+@RequestMapping("/diffParams")
+@ResponseBody
+public String diffParams(@RequestParam("name") String username, Integer age) {
+    System.out.println("username -> " + username);
+    System.out.println("age -> " + age);
+    return "{'module': 'diffParams'}";
+}
+
+// pojo 对象
+@RequestMapping("/pojoobject")
+@ResponseBody
+public String pojoobject(User user) {
+    System.out.println(user);
+    return "{'module': 'pojoobject'}";
+}
+
+// 数组
+@RequestMapping("/array")
+@ResponseBody
+public String array(String[] names) {
+    System.out.println(Arrays.toString(names));
+    return "{'module': 'array'}";
+}
+
+// List集合
+@RequestMapping("/list")
+@ResponseBody
+public String list(@RequestParam List<String> list) {
+    System.out.println(list + " <- list");
+    return "{'module': 'list'}";
 }
 ```
