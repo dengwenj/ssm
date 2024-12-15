@@ -183,6 +183,18 @@ public String jsonlistpojo(@RequestBody List<User> list) {
     System.out.println("list user ->" + list);
     return "{'module': 'jsonlistpojo'}";
 }
+
+// 日期传递
+@RequestMapping("/date")
+@ResponseBody
+public String date(Date date,
+                   @DateTimeFormat(pattern = "yyyy-MM-dd") Date date2,
+                   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date date3) {
+    System.out.println("date -> " + date);
+    System.out.println("date2 -> " + date2);
+    System.out.println("date3 -> " + date3);
+    return "{'module': 'date'}";
+}
 ```
 
 ### @RequestBody
@@ -197,3 +209,7 @@ public String jsonlistpojo(@RequestBody List<User> list) {
 * 应用：
 * 1、后期开发中，发送 json 格式数据为主，@RequestBody 应用较广
 * 2、如果发送非 json 格式数据，选用 @RequestParam 接收请求参数
+
+### 日期类型传递
+* @DateTimeFormat
+* 类型：形参注解，设定日期时间型数据格式， @DateTimeFormat(pattern = "yyyy-MM-dd")
