@@ -255,3 +255,43 @@ public List<User> reutrnlistpojo() {
 * 1、@RequestParam 用于接收 url 地址传参或表单传参
 * 2、@RequestBody 用于接收 json 数据
 * 3、@PathVariable 用于接收路径参数，使用 {参数名称} 描述路径参数
+
+### @RestController
+* 类注解，基于 SpringMVC 的 RESTful 开发控制器类定义上方
+* 作用：设置当前控制器类为 RESTful 风格，等同于 @Controller 与 @ResponseBody 两个注解组合功能
+
+### @GetMapping @PostMapping @PutMapping @DeleteMapping
+* 方法注解，作用：设置当前控制器方法请求访问路径与请求动作，每种对应一个请求动作
+```java
+@RestController
+@RequestMapping("/students")
+public class StudentController {
+    @PostMapping
+    public String save() {
+        return "add";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Integer id) {
+        System.out.println("删除id -> " + id);
+        return "delete";
+    }
+
+    @GetMapping
+    public String list() {
+        return "all query";
+    }
+
+    @GetMapping("/{id}")
+    public String list2(@PathVariable Integer id) {
+        System.out.println("查询单个 -> " + id);
+        return "listById";
+    }
+
+    @PutMapping("/{id}")
+    public String update(@PathVariable Integer id) {
+        System.out.println("修改id -> " + id);
+        return "update";
+    }
+}
+```
