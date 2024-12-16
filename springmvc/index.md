@@ -245,3 +245,13 @@ public List<User> reutrnlistpojo() {
 ### @ResponseBody
 * 方法注解，设置当前控制器返回值作为响应体
 * HttpMessageConverter 接口，响应做转换
+
+### REST 简介
+* REST（Representational State Transfer）。表现形式状态转换
+* 优点：隐藏资源的访问行为，无法通过地址得知对资源是何种操作，书写简化
+
+### @RequestBody @RequestParam @PathVariable
+* 区别：
+* 1、@RequestParam 用于接收 url 地址传参或表单传参
+* 2、@RequestBody 用于接收 json 数据
+* 3、@PathVariable 用于接收路径参数，使用 {参数名称} 描述路径参数
