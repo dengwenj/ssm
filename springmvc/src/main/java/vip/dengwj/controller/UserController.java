@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import vip.dengwj.domain.User;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -97,5 +98,30 @@ public class UserController {
         System.out.println("date2 -> " + date2);
         System.out.println("date3 -> " + date3);
         return "{'module': 'date'}";
+    }
+
+    // 响应字符串
+    @RequestMapping("returnstring")
+    @ResponseBody
+    public String returnstring() {
+        return "returnstring";
+    }
+
+    @RequestMapping("reutrnpojo")
+    @ResponseBody
+    public User reutrnpojo() {
+        User user = new User();
+        user.setName("朴睦");
+        user.setAge(18);
+        return user;
+    }
+
+    @RequestMapping("reutrnlistpojo")
+    @ResponseBody
+    public List<User> reutrnlistpojo() {
+        List<User> list = new ArrayList<>();
+        list.add(new User("朴睦", 24, null));
+        list.add(new User("李雷", 18, null));
+        return list;
     }
 }

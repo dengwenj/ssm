@@ -195,6 +195,31 @@ public String date(Date date,
     System.out.println("date3 -> " + date3);
     return "{'module': 'date'}";
 }
+
+// 响应字符串
+@RequestMapping("returnstring")
+@ResponseBody
+public String returnstring() {
+    return "returnstring";
+}
+
+@RequestMapping("reutrnpojo")
+@ResponseBody
+public User reutrnpojo() {
+    User user = new User();
+    user.setName("朴睦");
+    user.setAge(18);
+    return user;
+}
+
+@RequestMapping("reutrnlistpojo")
+@ResponseBody
+public List<User> reutrnlistpojo() {
+    List<User> list = new ArrayList<>();
+    list.add(new User("朴睦", 24, null));
+    list.add(new User("李雷", 18, null));
+    return list;
+}
 ```
 
 ### @RequestBody
@@ -213,3 +238,10 @@ public String date(Date date,
 ### 日期类型传递
 * @DateTimeFormat
 * 类型：形参注解，设定日期时间型数据格式， @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+### 类型转换器
+* Converter 接口，根据类型匹配对应的转换器
+
+### @ResponseBody
+* 方法注解，设置当前控制器返回值作为响应体
+* HttpMessageConverter 接口，响应做转换
