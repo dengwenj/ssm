@@ -29,6 +29,7 @@ public class ServletConfig extends AbstractDispatcherServletInitializer {
         return null;
     }
 
+    // post 乱码处理
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
