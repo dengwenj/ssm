@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.dengwj.mapper.BookMapper">
+
+    <insert id="addBook" parameterType="vip.dengwj.domain.Book">
+        insert into book (type, name, description)
+        values (#{type}, #{name}, #{description});
+    </insert>
+
+    <update id="updateBook" parameterType="vip.dengwj.domain.Book">
+        update book
+        <set>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="deleteBook" parameterType="java.lang.Integer">
+        delete from book where id = #{id};
+    </delete>
+
+<!--    resultMap-->
+    <select id="getBookById" resultType="vip.dengwj.domain.Book">
+        select id, type, name, description
+        from book where id = #{id};
+    </select>
+
+    <select id="bookAll" resultType="vip.dengwj.domain.Book">
+        select id, type, name, description from book;
+    </select>
+</mapper>
