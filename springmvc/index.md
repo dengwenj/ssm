@@ -298,6 +298,7 @@ public class StudentController {
 
 ### 设置对静态资源的访问放行
 ```java
+// WebMvcConfigurationSupport -> springmvc 配置支持
 @Configuration
 public class SpringMVCSupport extends WebMvcConfigurationSupport {
     // 设置对静态资源的访问放行，默认 SpringMVC 会拦截下来，走 Controller 里，因为 ServletConfig 里的 getServletMappings 写的 /

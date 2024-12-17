@@ -12,6 +12,7 @@
         <module>mybatis</module>
         <module>spring</module>
         <module>springmvc</module>
+        <module>springmvc_ssm</module>
     </modules>
 
     <properties>
