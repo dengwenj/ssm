@@ -17,6 +17,7 @@ public class KB {
 
     /**
      * =====================逻辑处理====================
+     *
      * @param list 前端传递的数据
      * @return 返回整理好的数据添加到数据库
      */
@@ -52,33 +53,20 @@ public class KB {
             List<String> daySortList = dbList.stream().map(ProdOrder::getDaySort).collect(Collectors.toList());
             boolean one = daySortList.contains("1");
             boolean two = daySortList.contains("2");
-
-            // 说明是当前天
-            if (queryByData.equals(prodOrder.getDate())) {
-                if (!two) {
-                    ProdOrder data = buildData(continuousList.get(i), machine, queryByData, "2");
-                    insertList.add(data);
-                    i++;
-                    if (i == continuousList.size()) {
-                        break;
-                    }
+            if (!one && !queryByData.equals(prodOrder.getDate())) {
+                ProdOrder data = buildData(continuousList.get(i), machine, queryByData, "1");
+                insertList.add(data);
+                i++;
+                if (i == continuousList.size()) {
+                    break;
                 }
-            } else {
-                if (!one) {
-                    ProdOrder data = buildData(continuousList.get(i), machine, queryByData, "1");
-                    insertList.add(data);
-                    i++;
-                    if (i == continuousList.size()) {
-                        break;
-                    }
-                }
-                if (!two) {
-                    ProdOrder data = buildData(continuousList.get(i), machine, queryByData, "2");
-                    insertList.add(data);
-                    i++;
-                    if (i == continuousList.size()) {
-                        break;
-                    }
+            }
+            if (!two) {
+                ProdOrder data = buildData(continuousList.get(i), machine, queryByData, "2");
+                insertList.add(data);
+                i++;
+                if (i == continuousList.size()) {
+                    break;
                 }
             }
             queryByData = LocalDate.parse(queryByData).plusDays(1).toString();
@@ -108,7 +96,7 @@ public class KB {
      */
     private void initFEData() {
         // 拖动到当前单元格的数据
-        feList.add(new ProdOrder("1080A", "2024-12-18", "2"));
+        feList.add(new ProdOrder("1080B", "2024-12-18", "1"));
         // 连续排缸的数据, 即连续排 10 缸
         feList.add(new ProdOrder());
         feList.add(new ProdOrder());
@@ -127,7 +115,7 @@ public class KB {
      */
     private void initProdOrder() {
         List<ProdOrder> list1 = new ArrayList<>();
-        list1.add(new ProdOrder("1080B", "2024-12-18", "1"));
+        list1.add(new ProdOrder("1080A", "2024-12-18", "1"));
         list1.add(new ProdOrder("1080B", "2024-12-18", "2"));
         list1.add(new ProdOrder("1080B", "2024-12-18", "3"));
         map.put("2024-12-18", list1);
