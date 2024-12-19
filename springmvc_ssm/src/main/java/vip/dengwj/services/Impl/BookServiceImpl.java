@@ -1,10 +1,10 @@
-package vip.dengwj.services;
+package vip.dengwj.services.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vip.dengwj.domain.Book;
 import vip.dengwj.mapper.BookMapper;
-import vip.dengwj.services.Impl.BookService;
+import vip.dengwj.services.BookService;
 
 import java.util.List;
 

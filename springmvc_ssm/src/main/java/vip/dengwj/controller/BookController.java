@@ -3,7 +3,7 @@ package vip.dengwj.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vip.dengwj.domain.Book;
-import vip.dengwj.services.Impl.BookService;
+import vip.dengwj.services.BookService;
 
 import java.util.List;
 
@@ -14,27 +14,36 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public boolean addBook(@RequestBody Book book) {
-        return bookService.addBook(book);
+    public Result addBook(@RequestBody Book book) {
+        boolean flag = bookService.addBook(book);
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag);
     }
 
     @PutMapping
-    public boolean updateBook(@RequestBody Book book) {
-        return bookService.updateBook(book);
+    public Result updateBook(@RequestBody Book book) {
+        boolean flag = bookService.updateBook(book);
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag);
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteBook(@PathVariable Integer id) {
-        return bookService.deleteBook(id);
+    public Result deleteBook(@PathVariable Integer id) {
+        boolean flag = bookService.deleteBook(id);
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag);
     }
 
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable Integer id) {
-        return bookService.getBookById(id);
+    public Result getBookById(@PathVariable Integer id) {
+        Book book = bookService.getBookById(id);
+        int code = book != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = book != null ? "查询成功" : "查询失败";
+        return new Result(code, book, msg);
     }
 
     @GetMapping
-    public List<Book> getBooks() {
-        return bookService.bookAll();
+    public Result getBooks() {
+        List<Book> books = bookService.bookAll();
+        int code = books != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = books != null ? "查询成功" : "查询失败";
+        return new Result(code, books, msg);
     }
 }
