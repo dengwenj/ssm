@@ -38,6 +38,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> bookAll() {
+        int i = 1 / 0;
         return bookMapper.bookAll();
     }
 }
