@@ -58,3 +58,13 @@ public class BusinessException extends RuntimeException {
     }
 }
 ```
+
+### 拦截器概念
+* 拦截器（Interceptor）是一种动态拦截方法调用的机制
+* 作用：
+* 1、在指定的方法调用前后执行预先设定的代码
+* 2、阻止原始方法的执行
+
+### 拦截器与过滤器区别
+* 归属不同：Filter 属于 Servlet 技术，Interceptor 属于 SpringMVC 技术
+* 拦截内容不同：Filter 对所有访问进行增强，Interceptor 仅针对 SpringMVC 的访问进行增强
