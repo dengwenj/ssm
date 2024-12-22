@@ -104,3 +104,17 @@ public class SpringMVCSupport extends WebMvcConfigurationSupport {
     }
 }
 ```
+
+### 拦截器参数
+* 前置处理：
+* 1、request 请求对象
+* 2、response 响应对象
+* 3、handler：被调用的处理器对象，本质上是一个方法对象，对反射技术中的 Method 对象进行了再封装
+* 返回值：返回值为 false，被拦截的处理器将不执行
+
+### 多拦截器执行顺序
+* 当配置多个拦截器时，形成拦截器链
+* 拦截器链的运行顺序参照拦截器添加顺序为准
+* 当拦截器中出现对原始处理器的拦截，后面的拦截器均终止运行
+* 当拦截器运行中断，仅运行配置在前面的拦截器的 afterCompletion 操作
+* pre1 -> pre2 -> pre3 -> controller -> post3 -> post2 -> post1 -> after3 -> after2 -> after1
