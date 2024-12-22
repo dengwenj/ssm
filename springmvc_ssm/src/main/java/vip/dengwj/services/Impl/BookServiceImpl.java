@@ -50,6 +50,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> bookAll() {
+        System.out.println("bookAll...");
         return bookMapper.bookAll();
     }
 }

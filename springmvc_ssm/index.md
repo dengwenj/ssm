@@ -68,3 +68,39 @@ public class BusinessException extends RuntimeException {
 ### 拦截器与过滤器区别
 * 归属不同：Filter 属于 Servlet 技术，Interceptor 属于 SpringMVC 技术
 * 拦截内容不同：Filter 对所有访问进行增强，Interceptor 仅针对 SpringMVC 的访问进行增强
+
+
+### 拦截器定义和配置
+```java
+@Component
+public class ProjectInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("preHandle...");
+        // 返回 false 就不忘后面执行了
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("postHandle...");
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("afterCompletion...");
+    }
+}
+
+@Configuration
+public class SpringMVCSupport extends WebMvcConfigurationSupport {
+    @Autowired
+    ProjectInterceptor projectInterceptor;
+
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        // 当路径为 /books 或 /books/???，会走拦截器
+        registry.addInterceptor(projectInterceptor).addPathPatterns("/books", "books/*");
+    }
+}
+```
