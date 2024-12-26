@@ -156,3 +156,61 @@ public class SpringMVCSupport extends WebMvcConfigurationSupport {
 * <packaging>pom</packaging>，每个 maven 工程都有对应的打包方式，默认为 jar，web工程打包方式为 war
 * 2、设置当前聚合工程所包含的子模块名称
 * <modules><module>../maven_pojo</module></modules>
+
+### 继承
+* 继承描述的是两个工程间的关系，与 java 中的继承相似，子工程可以继承父工程中的配置信息，常见于依赖关系的继承
+* 作用：1、简化配置，2、减少版本冲突
+
+### 继承步骤
+* 1、创建 Maven 模块，设置打包类型为 pom
+* 2、在父工程的 pom 文件中配置依赖关系（子工程将沿用父工程中的依赖关系）
+* 3、配置子工程中可选的依赖关系
+* 4、在子工程中配置当前工程所继承的父工程
+* 子工程中使用父工程中的可选依赖时，仅需要提供群组 id 和项目 id，无需提供版本，版本由父工程统一提供，避免版本冲突子工程中还可以定义父工程中没有定义的依赖关系
+
+### 聚合与继承的区别
+* 作用：
+* 聚合用于快速构建项目（对父工程进行构建子工程跟着一块构建）
+* 继承用于快速配置
+* 相同点：
+* 聚合与继承的 pom.xml 文件打包方式均为 pom，可以将两种关系制作到同一个 pom 文件中
+* 聚合与继承均属于设计型模块，并无实际的模块内容
+* 不同点：
+* 聚合是在当前模块中配置关系，聚合可以感知到参与聚合的模块有哪些
+* 继承是在子模块中配置关系，父模块无法感知哪些子模块继承了自己
+
+### 属性配置
+```xml
+<properties>
+    <spring.version>5.2.0</spring.version>
+<!--    ...-->
+</properties>
+```
+* groupId是项目组织的唯一标识符，通常使用反向域名来表示
+* artifactId是项目的唯一名称，用于在同一个groupId下区分不同的项目。比如我这里的(mybatis，spring，springmvc，springmvc_ssm)
+
+### 版本管理
+* 工程版本：
+* SNAPSHOT(快照版本)：项目开发过程中临时输出的版本，称为快照版本，快照版本会随着开发的进展不断更新
+* RELEASE(发布版本)：稳定的版本
+
+### maven 多环境配置
+```xml
+<!--    多环境配置-->
+    <profiles>
+<!--        生产环境-->
+        <profile>
+            <id>env_pro</id>
+            <properties>
+                <jdbc.url>...</jdbc.url>
+            </properties>
+        </profile>
+        <!--        开发环境-->
+        <profile>
+            <id>env_dev</id>
+            <properties>
+                <jdbc.url>...</jdbc.url>
+            </properties>
+        </profile>
+    </profiles>
+```

@@ -19,13 +19,14 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>5.2.0.RELEASE</spring.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.2.0.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -113,6 +114,17 @@
             <version>2.16.2</version>
         </dependency>
     </dependencies>
+
+<!--    多环境配置-->
+    <profiles>
+<!--        生产环境-->
+        <profile>
+            <id>env_pro</id>
+            <properties>
+                <jdbc.url>...</jdbc.url>
+            </properties>
+        </profile>
+    </profiles>
 
 <!--    tomcat 用 7 的版本-->
     <build>
